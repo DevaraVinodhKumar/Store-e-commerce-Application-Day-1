@@ -7,7 +7,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   plugins: [
-    daisyui,
+    // daisyui,
+    // require('daisyui'),
+    require("@tailwindcss/typography"), require("daisyui")
   ],
+  daisyui: {
+    themes: ["winter", "dracula"],
+  },
 };
 
