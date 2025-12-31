@@ -1,9 +1,28 @@
-import React from 'react'
+import React from "react";
+import { Hero } from "../Components";
+
+import { customFetch } from "../utils";
+import FeaturedProducts from "../Components/FeaturedProducts";
+const url = "/products?featured=true";
+
+const featuredProductsQuery = {
+  queryKey: ["featuredProducts"],
+  queryFn: () => customFetch(url),
+};
+export const loader = (queryClient) => async () => {
+  const response = await queryClient.ensureQueryData(featuredProductsQuery);
+
+  const products = response.data.data;
+  return { products };
+};
 
 const Landing = () => {
   return (
-    <div>Landing</div>
-  )
-}
+    <>
+      <Hero />
+      <FeaturedProducts />
+    </>
+  );
+};
 
-export default Landing
+export default Landing;

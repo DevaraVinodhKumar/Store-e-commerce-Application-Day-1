@@ -1,14 +1,22 @@
-import React from 'react'
-import { useNavigation } from 'react-router'
+import React from "react";
+import { useNavigation } from "react-router-dom";
 
-
-
-const SubmitButton = ({text}) => {
+const SubmitButton = ({ text }) => {
   const navigate = useNavigation();
-  const isSubmitting = navigate.state === "submitting"
+  const isSubmitting = navigate.state === "submitting";
   return (
-    <button className='btn btn-primary btn-block ' type='submit'>{isSubmitting ? (<span className='loading loading-spinner'>Sending...</span>) : (text || "submit")}</button>
-  )
-}
+    <button
+      type="submit"
+      className="btn btn-primary btn-block"
+      disabled={isSubmitting}
+    >
+      {isSubmitting ? (
+        <span className="loading loading-spinner">sending...</span>
+      ) : (
+        text || "submit"
+      )}
+    </button>
+  );
+};
 
-export default SubmitButton
+export default SubmitButton;
